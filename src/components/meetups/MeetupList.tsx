@@ -1,8 +1,9 @@
+import { MeetupItemType } from '@/pages';
 import MeetupItem, { MeetupItemProps } from './MeetupItem';
 import classes from './MeetupList.module.css';
 
 interface MeetupListProps {
-  meetups: MeetupItemProps[]
+  meetups: MeetupItemType[]
 }
 
 function MeetupList(props: MeetupListProps) {
