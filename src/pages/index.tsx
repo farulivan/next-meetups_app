@@ -29,13 +29,13 @@ const DUMMY_MEETUPS: MeetupItemType[] = [
 ];
 
 interface HomePageProps {
-  meetups: MeetupItemType[]
+  meetups: MeetupItemType[];
 }
 
 const HomePage = (props: HomePageProps) => {
   // this is using react to fetch data, but this make a problem that the page will not pre-render by Next
   // const [loadedMeetups, setLoadedMeetups] = useState([] as MeetupItem[]);
-  
+
   // useEffect(() => {
   //   setLoadedMeetups(DUMMY_MEETUPS)
   // }, [])
@@ -48,9 +48,11 @@ export async function getStaticProps() {
   //fetch data from an API
   return {
     props: {
-      meetups: DUMMY_MEETUPS
-    }
-  }
+      meetups: DUMMY_MEETUPS,
+    },
+    //using this, is ISR (Incremental Static Regeneration), so the page will automaticaly update
+    revalidate: 1,
+  };
 }
 
 export default HomePage;
