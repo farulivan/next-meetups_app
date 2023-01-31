@@ -43,7 +43,21 @@ const HomePage = (props: HomePageProps) => {
   return <MeetupList meetups={props.meetups} />;
 };
 
-//this function only run in build process not in the client/server
+// //this alternative using SSR
+// export async function getServerSideProps(context: any) {
+//   const req = context.req;
+//   const res = context.res;
+
+//   // fetch data from an API
+
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//   }
+// }
+
+// this function only run in build process not in the client/server
 export async function getStaticProps() {
   //fetch data from an API
   return {
@@ -54,5 +68,10 @@ export async function getStaticProps() {
     revalidate: 1,
   };
 }
+
+// TIPS CHOOSING SSR OR SSG:
+//use SSR can be slow because need to regenerate if there is any request
+//use SSR if you need req and res OR if you need to change everytime there is a request
+//other than that, use SSG! SSG faster and can be cache
 
 export default HomePage;
